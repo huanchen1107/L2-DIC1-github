@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello - Huan Chen</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%);
+            --card-bg: rgba(17, 24, 39, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-1: #6366f1;
+            --accent-2: #3b82f6;
+            --accent-3: #10b981;
+            --glow-color: rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background glowing spheres */
+        .ambient-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--glow-color) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+            animation: float-glow 20s infinite alternate ease-in-out;
+        }
+
+        .ambient-glow-1 {
+            top: -100px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+
+        .ambient-glow-2 {
+            bottom: -150px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            animation-delay: -10s;
+        }
+
+        @keyframes float-glow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(50px, 50px) scale(1.1);
+            }
+        }
+
+        /* Container Card */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 540px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3),
+                        0 0 40px rgba(99, 102, 241, 0.05);
+            z-index: 1;
+            transform: translateY(0);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.25);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+                        0 0 50px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Initials/Avatar emblem */
+        .avatar-emblem {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            margin: 0 auto 2rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar-emblem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: all 0.6s;
+        }
+
+        .card:hover .avatar-emblem::before {
+            left: 100%;
+            transition: all 0.6s ease;
+        }
+
+        /* Greeting */
+        .greeting {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Name */
+        .name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* Divider line */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--card-border) 20%, var(--card-border) 80%, transparent);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: -1.5px;
+            left: calc(50% - 3px);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--accent-1);
+            box-shadow: 0 0 8px var(--accent-1);
+        }
+
+        /* Clock Display */
+        .time-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .time-display {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #ffffff;
+            line-height: 1;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 2px;
+        }
+
+        .time-period {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        /* Calendar Date */
+        .date-display {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Dynamic status dot */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-3);
+            box-shadow: 0 0 8px var(--accent-3);
+            animation: pulse-dot 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.5;
+            }
+        }
+
+        /* Footer info */
+        .footer-note {
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            color: rgba(156, 163, 175, 0.4);
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient glowing backgrounds -->
+    <div class="ambient-glow ambient-glow-1"></div>
+    <div class="ambient-glow ambient-glow-2"></div>
+
+    <!-- Main visual interface card -->
+    <div class="card" id="card">
+        <!-- Logo Emblem with Huan Chen initials -->
+        <div class="avatar-emblem" id="avatar">HC</div>
+
+        <p class="greeting" id="greeting">Hello, my name is</p>
+        <h1 class="name" id="name">Huan Chen</h1>
+
+        <div class="divider"></div>
+
+        <!-- Dynamic Time & Date Section -->
+        <div class="time-container">
+            <div class="time-display" id="time-display">
+                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                <span class="time-period" id="period">PM</span>
+            </div>
+        </div>
+
+        <div class="date-display" id="date-display">
+            <span class="status-dot"></span>
+            <span id="full-date">Loading date...</span>
+        </div>
+
+        <p class="footer-note" id="footer">LIVE SYSTEM SYNCHRONIZATION ACTIVE</p>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format time components
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            // Convert to 12-hour format
+            hours = hours % 12;
+            hours = hours ? hours : 12; // 0 should be 12
+            const hoursStr = String(hours).padStart(2, '0');
+
+            // Update time DOM elements
+            document.getElementById('hours').textContent = hoursStr;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+            document.getElementById('period').textContent = ampm;
+
+            // Format date: e.g., "Friday, May 29, 2026"
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const dateStr = now.toLocaleDateString('en-US', options);
+            document.getElementById('full-date').textContent = dateStr;
+        }
+
+        // Initialize and schedule recursive updates
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>
