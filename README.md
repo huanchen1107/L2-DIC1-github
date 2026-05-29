@@ -3,6 +3,8 @@
 A sleek, single-page personal greeting card built with pure HTML, CSS, and JavaScript.  
 No frameworks. No dependencies. Just clean code and a premium design.
 
+🔗 **Live Demo: [https://huanchen1107.github.io/L2-DIC1-github/](https://huanchen1107.github.io/L2-DIC1-github/)**
+
 ---
 
 ## ✨ Features
